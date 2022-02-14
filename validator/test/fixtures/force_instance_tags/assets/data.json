@@ -1,0 +1,173 @@
+[
+  {
+    "name": "//compute.googleapis.com/projects/unified-sensor-327013/global/firewalls/allow-http-traffic",
+    "asset_type": "compute.googleapis.com/Firewall",
+    "ancestry_path": "project/unified-sensor-327013",
+    "resource": {
+      "version": "v1",
+      "discovery_document_uri": "https://www.googleapis.com/discovery/v1/apis/compute/v1/rest",
+      "discovery_name": "Firewall",
+      "parent": "//cloudresourcemanager.googleapis.com/projects/unified-sensor-327013",
+      "data": {
+        "allowed": [
+          {
+            "IPProtocol": "tcp",
+            "ports": [
+              "80"
+            ]
+          }
+        ],
+        "disabled": false,
+        "logConfig": {
+          "enable": false
+        },
+        "name": "allow-http-traffic",
+        "network": "projects/unified-sensor-327013/global/networks/default",
+        "priority": 1000,
+        "targetTags": [
+          "allow-http"
+        ]
+      }
+    }
+  },
+  {
+    "name": "//compute.googleapis.com/projects/unified-sensor-327013/zones/us-central1-c/instances/placeholder-BpLnfgDs",
+    "asset_type": "compute.googleapis.com/Instance",
+    "ancestry_path": "project/unified-sensor-327013",
+    "resource": {
+      "version": "v1",
+      "discovery_document_uri": "https://www.googleapis.com/discovery/v1/apis/compute/v1/rest",
+      "discovery_name": "Instance",
+      "parent": "//cloudresourcemanager.googleapis.com/projects/unified-sensor-327013",
+      "data": {
+        "canIpForward": false,
+        "deletionProtection": false,
+        "disks": [
+          {
+            "autoDelete": true,
+            "boot": true,
+            "initializeParams": {
+              "sourceImage": "projects/ubuntu-os-cloud/global/images/family/ubuntu-1804-lts"
+            },
+            "mode": "READ_WRITE"
+          }
+        ],
+        "displayDevice": {
+          "enableDisplay": false
+        },
+        "machineType": "projects/unified-sensor-327013/zones/us-central1-c/machineTypes/f1-micro",
+        "metadata": {
+          "items": [
+            {
+              "key": "startup-script",
+              "value": "#! /bin/bash\napt update\napt -y install apache2\ncat \u003c\u003cEOF \u003e /var/www/html/index.html\n\u003chtml\u003e\u003cbody\u003e\u003cp\u003e\u0026#127790; \u0026#127790; \u0026#127790;\u003c/p\u003e\u003cp\u003edeployed html\u003c/p\u003e\u003c/body\u003e\u003c/html\u003e"
+            }
+          ]
+        },
+        "networkInterfaces": [
+          {
+            "accessConfigs": [
+              {
+                "type": "ONE_TO_ONE_NAT"
+              }
+            ],
+            "network": "projects/unified-sensor-327013/global/networks/default"
+          }
+        ],
+        "scheduling": {
+          "automaticRestart": true
+        },
+        "shieldedInstanceConfig": {
+          "enableIntegrityMonitoring": false,
+          "enableSecureBoot": false,
+          "enableVtpm": false
+        },
+        "tags": {
+          "items": [
+            "allow-https",
+            "allow-http"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "//storage.googleapis.com/placeholder-c2WD8F2q",
+    "asset_type": "storage.googleapis.com/Bucket",
+    "ancestry_path": "project/unified-sensor-327013",
+    "resource": {
+      "version": "v1",
+      "discovery_document_uri": "https://www.googleapis.com/discovery/v1/apis/storage/v1/rest",
+      "discovery_name": "Bucket",
+      "parent": "//cloudresourcemanager.googleapis.com/projects/unified-sensor-327013",
+      "data": {
+        "billing": {},
+        "iamConfiguration": {
+          "uniformBucketLevelAccess": {
+            "enabled": false
+          }
+        },
+        "lifecycle": {
+          "rule": [
+            {
+              "action": {
+                "type": "Delete"
+              },
+              "condition": {
+                "age": 3
+              }
+            }
+          ]
+        },
+        "location": "US-WEST1",
+        "project": "unified-sensor-327013",
+        "storageClass": "STANDARD"
+      }
+    }
+  },
+  {
+    "name": "//storage.googleapis.com/some-example-com",
+    "asset_type": "storage.googleapis.com/Bucket",
+    "ancestry_path": "project/unified-sensor-327013",
+    "resource": {
+      "version": "v1",
+      "discovery_document_uri": "https://www.googleapis.com/discovery/v1/apis/storage/v1/rest",
+      "discovery_name": "Bucket",
+      "parent": "//cloudresourcemanager.googleapis.com/projects/unified-sensor-327013",
+      "data": {
+        "billing": {},
+        "cors": [
+          {
+            "maxAgeSeconds": 3600,
+            "method": [
+              "GET",
+              "HEAD",
+              "PUT",
+              "POST",
+              "DELETE"
+            ],
+            "origin": [
+              "http://some-example.com"
+            ],
+            "responseHeader": [
+              "*"
+            ]
+          }
+        ],
+        "iamConfiguration": {
+          "uniformBucketLevelAccess": {
+            "enabled": true
+          }
+        },
+        "labels": {
+          "label1": "test-bucket"
+        },
+        "lifecycle": {},
+        "location": "EUROPE-NORTH1",
+        "name": "some-example-com",
+        "project": "unified-sensor-327013",
+        "storageClass": "STANDARD"
+      }
+    }
+  }
+]

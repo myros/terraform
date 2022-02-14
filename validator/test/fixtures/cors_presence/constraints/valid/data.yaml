@@ -1,0 +1,11 @@
+apiVersion: constraints.gatekeeper.sh/v1alpha1
+kind: K8sRequiredLabels
+metadata:
+  name: check_labels
+spec:
+  severity: high
+  match:
+    target: ["projects/**"]
+  parameters: 
+    resource_types_to_scan:
+      - storage.googleapis.com/Bucket

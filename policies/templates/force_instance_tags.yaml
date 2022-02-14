@@ -1,0 +1,56 @@
+apiVersion: templates.gatekeeper.sh/v1alpha1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequiredlabels
+  annotations:
+    description: Requires all resources to contain a specified label with a value
+      matching a provided regular expression.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequiredLabels
+      validation:
+        # Schema for the `parameters` field
+        openAPIV3Schema:
+          properties:
+            message:
+              type: string
+            labels:
+              type: array
+              items:
+                type: string
+  targets:
+    validation.gcp.forsetisecurity.org:
+      rego: | #INLINE("validator/force_instance_tags.rego")
+        package main
+        
+        import data.validator.gcp.lib as lib
+        
+        deny[{"msg": msg, "details": {"missing_tags": missing}}] {
+        	constraint := input.constraint
+        	lib.get_constraint_params(constraint, params)
+        
+        	asset := input.asset
+        
+        	asset.asset_type == params.types[_]
+        
+        	resource_data := asset.resource.data
+        
+        	provided := {label | label := resource_data.tags.items[_]}
+        	required := {label | label := params.required_tags[_]}
+        
+        	missing := required - provided
+        
+        	count(missing) != 0
+        
+        	msg := sprintf("you must provide tags: %v", [missing])
+        }
+        
+        in_list(required, tag) = missing {
+        	trace(sprintf("Tags: ", [tag]))
+        	not required[tag]
+        
+        	missing := required[tag]
+        }
+        #ENDINLINE

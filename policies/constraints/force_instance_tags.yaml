@@ -1,0 +1,15 @@
+apiVersion: constraints.gatekeeper.sh/v1alpha1
+kind: K8sRequiredLabels
+metadata:
+  name: ns-must-have-labels
+spec:
+  match:
+    target: # {"$ref":"#/definitions/io.k8s.cli.setters.target"}
+    - "projects/**"
+  parameters:
+    # Note that "labels" is now contained in an array item, rather than an object key under "parameters"
+    types:
+      - compute.googleapis.com/Instance
+    required_tags:
+      - allow-http
+      - allow-https

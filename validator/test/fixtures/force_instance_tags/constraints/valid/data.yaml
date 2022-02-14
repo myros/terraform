@@ -1,0 +1,14 @@
+apiVersion: constraints.gatekeeper.sh/v1alpha1
+kind: K8sRequiredLabels
+metadata:
+  name: check_labels
+spec:
+  severity: high
+  match:
+    target: ["projects/**"]
+  parameters: 
+    types:
+      - compute.googleapis.com/Instance
+    required_tags:
+      - allow-http
+      - allow-https
