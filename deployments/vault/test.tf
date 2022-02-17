@@ -46,6 +46,15 @@ resource "google_storage_bucket" "bucket" {
   // ]
 }
 
+// resource "kubernetes_service_account_v1" "vault-auth" {
+//   metadata {
+//     name = "vault-auth-sa"
+//   }
+//   // secret {
+//   //   name = "${kubernetes_secret_v1.example.metadata.0.name}"
+//   // }
+// }
+
 // resource "google_storage_bucket" "bucket1" {
 //   name          = lower("${var.bucket_name}-${random_id.rand.hex}")
 //   location      = "eu-west"
