@@ -21,7 +21,8 @@ injector:
 server:
   annotations:
     cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
-    
+    # kubernetes.io/ingress.class: "nginx
+
   extraEnvironmentVars:
     GOOGLE_REGION: "${region}"
     GOOGLE_PROJECT: "${project_id}"
@@ -80,5 +81,5 @@ server:
 ui:
   enabled: true
   serviceType: "LoadBalancer"
-  serviceNodePort: null
-  externalPort: 8200    
+  # serviceNodePort: null
+  # externalPort: 8200    
