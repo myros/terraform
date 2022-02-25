@@ -15,7 +15,7 @@ variable "project_number" {
 
 variable "region" {
   type        = string
-  default     = "us-east1"
+  default     = "us-central1"
   description = "Region in which to create the cluster and run Vault."
 }
 

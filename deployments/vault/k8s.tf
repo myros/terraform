@@ -2,6 +2,15 @@ locals {
   vault_tls_name = "vault-tls-${random_id.kms_random.hex}"
 }
 
+#
+# EXTERNAL IP RESERVATION
+# ------------------------------------
+resource "google_compute_address" "external" {
+  project       = var.project_id
+  region        = var.region
+  name = "nginx-pl-ip-address"
+}
+
 resource "kubernetes_secret" "vault-tls" {
   metadata {
     name = local.vault_tls_name
