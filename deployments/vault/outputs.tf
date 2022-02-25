@@ -14,9 +14,9 @@ output "kubernetes_cluster_host" {
   description = "GKE Cluster Host"
 }
 
-output "vault_ip_address" {
-  value = data.kubernetes_service_v1.vault-deployment.status.0.load_balancer.0.ingress.0.ip
-}
+// output "vault_ip_address" {
+//   value = data.kubernetes_service_v1.vault-deployment.status.0.load_balancer.0.ingress.0.ip
+// }
 
 // output "dashboard_ip_address" {
 //   value = data.kubernetes_service_v1.dashboard-deployment.status.0.load_balancer.0.ingress.0.ip
@@ -38,7 +38,9 @@ output "keyring-name" {
   description = "GKE Cluster Host"
 }
 
-
+output "vault-ip" {
+  value = "https://${var.vault_release_name}-${data.google_compute_address.external.address}.nip.io"
+}
 
 // output "templates" {
 //   value = null_resource.your_deployment

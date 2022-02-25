@@ -21,9 +21,16 @@ variable "region" {
 
 variable "cluster_name" {
   type        = string
-  default     = "gke-cluster-pl"
+  default     = "gke-cluster"
   description = "Cluster name"
 }
+
+variable "vault_release_name" {
+  description = "Application name."
+  type        = string
+  default     = "vault-pl"
+}
+
 variable "bucket_name" {
   type        = string
   default     = "pipeline-test-bucket"

@@ -33,7 +33,7 @@ server:
 
   extraVolumes:
     - type: 'secret'
-      name: 'kms-creds'
+      name: 'kms-pl-creds'
     - type: 'secret'
       name: ${vault-tls}    
 

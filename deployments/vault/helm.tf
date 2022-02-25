@@ -1,37 +1,7 @@
 # kubectl create configmap nginx-purge-cache-lua --from-file purge-multi.lua=purge-cache.lua --dry-run -o yaml | kubectl apply -f -
 
-
-// nginx
-resource "helm_release" "nginx" {
-  name       = "nginx"
-  // namespace = kubernetes_namespace.cert.metadata[0].name
-  // repository = "https://helm.nginx.com/stable"
-  chart      = "ingress-nginx/ingress-nginx"
-  set {
-    name  = "installCRDs"
-    value = "true"
-  }
-  set {
-    name  = "rbac.create"
-    value = "true"
-  }
-  // set {
-  //   name  = "spec.type"
-  //   value = "LoadBalancer"
-  // }
-  set {
-    name  = "controller.service.loadBalancerIP"
-    value = google_compute_address.external.address
-  }
-
-  depends_on = [
-    google_compute_address.external
-  ]
-}
-
-
 resource "helm_release" "vault" {
-  name  = "vault"
+  name  = var.vault_release_name
   description = "test vault"
   chart = "vault"
   repository = "https://helm.releases.hashicorp.com"
@@ -55,44 +25,9 @@ resource "helm_release" "vault" {
 # K8S DASHBOARD
 # -----------------------------
 
-resource "helm_release" "kubernetes-dashboard" {
-  // count = 0
-
-  name = "kubernetes-dashboard"
-
-  repository = "https://kubernetes.github.io/dashboard/"
-  chart      = "kubernetes-dashboard"
-  namespace  = "default"
-
-  set {
-    name  = "service.type"
-    value = "LoadBalancer"
-  }
-
-  set {
-    name  = "protocolHttp"
-    value = "true"
-  }
-
-  set {
-    name  = "service.externalPort"
-    value = 80
-  }
-
-  set {
-    name  = "replicaCount"
-    value = 1
-  }
-
-  set {
-    name  = "rbac.clusterReadOnlyRole"
-    value = "true"
-  }
-}
-
 resource "helm_release" "helm-rancher" {
   count = 0
-  name       = "rancher"
+  name       = "rancher-pl"
   chart      = "rancher-stable/rancher"
 
   set {

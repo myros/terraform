@@ -5,10 +5,10 @@ locals {
 #
 # EXTERNAL IP RESERVATION
 # ------------------------------------
-resource "google_compute_address" "external" {
+data "google_compute_address" "external" {
   project       = var.project_id
   region        = var.region
-  name = "nginx-pl-ip-address"
+  name = "nginx-ip-address"
 }
 
 resource "kubernetes_secret" "vault-tls" {
@@ -25,7 +25,7 @@ resource "kubernetes_secret" "vault-tls" {
 
 resource "kubernetes_secret" "kms-creds" {
   metadata {
-    name      = "kms-creds"
+    name      = "kms-pl-creds"
     namespace = "default"
   }
 

@@ -91,6 +91,7 @@ steps:
 
         terrascan -f ./deployments/vault/terraform.tfplan.json > ./reports/terrascan.txt
 
+        echo ls deployments/vault
         echo "*************** END *****************************"
         echo "*************************************************"
 
