@@ -1,5 +1,35 @@
 # kubectl create configmap nginx-purge-cache-lua --from-file purge-multi.lua=purge-cache.lua --dry-run -o yaml | kubectl apply -f -
 
+
+// nginx
+resource "helm_release" "nginx" {
+  name       = "nginx"
+  // namespace = kubernetes_namespace.cert.metadata[0].name
+  // repository = "https://helm.nginx.com/stable"
+  chart      = "ingress-nginx/ingress-nginx"
+  set {
+    name  = "installCRDs"
+    value = "true"
+  }
+  set {
+    name  = "rbac.create"
+    value = "true"
+  }
+  // set {
+  //   name  = "spec.type"
+  //   value = "LoadBalancer"
+  // }
+  set {
+    name  = "controller.service.loadBalancerIP"
+    value = google_compute_address.external.address
+  }
+
+  depends_on = [
+    google_compute_address.external
+  ]
+}
+
+
 resource "helm_release" "vault" {
   name  = "vault"
   description = "test vault"
