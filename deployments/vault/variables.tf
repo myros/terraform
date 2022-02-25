@@ -15,13 +15,13 @@ variable "project_number" {
 
 variable "region" {
   type        = string
-  default     = "us-central1"
+  default     = "us-east1"
   description = "Region in which to create the cluster and run Vault."
 }
 
 variable "cluster_name" {
   type        = string
-  default     = "pipeline-cluster"
+  default     = "gke-cluster-pl"
   description = "Cluster name"
 }
 variable "bucket_name" {
