@@ -26,7 +26,7 @@ server:
   extraEnvironmentVars:
     GOOGLE_REGION: "${region}"
     GOOGLE_PROJECT: "${project_id}"
-    GOOGLE_APPLICATION_CREDENTIALS: /vault/userconfig/kms-creds/credentials.json
+    GOOGLE_APPLICATION_CREDENTIALS: /vault/userconfig/kms-pl-creds/credentials.json
     VAULT_ADDR: https://127.0.0.1:8200
     VAULT_SKIP_VERIFY: true
     VAULT_CACERT: /vault/userconfig/${vault-tls}/ca.crt  
