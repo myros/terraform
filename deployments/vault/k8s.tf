@@ -1,5 +1,5 @@
 locals {
-  vault_tls_name = "vault-tls-${random_id.kms_random.hex}"
+  vault_tls_name = "vault-tls-pl"
 }
 
 #
