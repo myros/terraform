@@ -30,7 +30,7 @@ resource "kubernetes_ingress" "vault" {
         "${var.vault_release_name}-${data.google_compute_address.external.address}.nip.io",
 
       ]
-      secret_name = "${var.vault_release_name}-tls"
+      secret_name = "${var.vault_release_name}-ingress-tls"
     }
   }
 }
