@@ -96,7 +96,7 @@ steps:
         echo "*************************************************"
 
   # -----------------------------------
-  - id: 'Validate Terraform plan'
+  - id: 'Validate Terraform plan with Google Terraform Validator'
     name: gcr.io/${PROJECT_ID}/repo/terraform-validator
     args:
       - validate
