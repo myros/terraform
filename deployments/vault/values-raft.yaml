@@ -6,6 +6,7 @@ global:
 #   enabled: true
   
 injector:
+  enabled: false
   image:
     repository: "hashicorp/vault-k8s"
     tag: "0.14.2"

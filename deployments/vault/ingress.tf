@@ -3,6 +3,7 @@ resource "kubernetes_ingress" "vault" {
 
   metadata {
     name = "${var.vault_release_name}-ingress"
+    namespace = "vault"
     annotations = {
       "kubernetes.io/ingress.class" = "nginx"
       "nginx.ingress.kubernetes.io/ssl-redirect" = "true"

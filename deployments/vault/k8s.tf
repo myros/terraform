@@ -14,6 +14,7 @@ data "google_compute_address" "external" {
 resource "kubernetes_secret" "vault-tls" {
   metadata {
     name = local.vault_tls_name
+    namespace = "vault"
   }
 
   data = {
@@ -26,7 +27,7 @@ resource "kubernetes_secret" "vault-tls" {
 resource "kubernetes_secret" "kms-creds" {
   metadata {
     name      = "kms-pl-creds"
-    namespace = "default"
+    namespace = "vault"
   }
 
   data = {

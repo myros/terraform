@@ -2,8 +2,10 @@
 
 resource "helm_release" "vault" {
   name  = var.vault_release_name
+  namespace = "vault"
   description = "test vault"
   chart = "vault"
+  create_namespace = true
   repository = "https://helm.releases.hashicorp.com"
   values = [
     templatefile("${path.module}/values-raft.yaml", {
