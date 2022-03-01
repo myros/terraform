@@ -34,4 +34,8 @@ resource "kubernetes_ingress" "vault" {
       secret_name = "${var.vault_release_name}-ingress-tls"
     }
   }
+
+  depends_on = [
+    helm_release.vault
+  ]
 }

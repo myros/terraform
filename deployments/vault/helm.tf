@@ -1,11 +1,28 @@
 # kubectl create configmap nginx-purge-cache-lua --from-file purge-multi.lua=purge-cache.lua --dry-run -o yaml | kubectl apply -f -
 
+
+resource "kubernetes_namespace" "vault" {
+  metadata {
+    annotations = {
+      name = "example-annotation"
+    }
+
+    labels = {
+      mylabel = "label-value"
+    }
+
+    name = "vault"
+
+  }
+
+}
+
 resource "helm_release" "vault" {
   name  = var.vault_release_name
   namespace = "vault"
   description = "test vault"
   chart = "vault"
-  create_namespace = true
+  # create_namespace = true
   repository = "https://helm.releases.hashicorp.com"
   values = [
     templatefile("${path.module}/values-raft.yaml", {
@@ -20,6 +37,10 @@ resource "helm_release" "vault" {
   // values = [
   //   "${file("values-raft.yaml")}"
   // ]
+
+  depends_on = [
+    kubernetes_namespace.vault
+  ]
 }
 
 

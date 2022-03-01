@@ -6,7 +6,7 @@ global:
 #   enabled: true
   
 injector:
-  enabled: false
+  enabled: true
   image:
     repository: "hashicorp/vault-k8s"
     tag: "0.14.2"
@@ -40,9 +40,9 @@ server:
 
   image:
     repository: "vault"
-    tag: "1.9.2"
+    tag: "1.9.0"
     # Overrides the default Image Pull Policy
-    pullPolicy: IfNotPresent      
+    pullPolicy: Always      
 
   ha:
     enabled: true
@@ -68,6 +68,17 @@ server:
           # tls_key_file  = "/vault/userconfig/${vault-tls}/vault.key"
           # tls_client_ca_file = "/vault/userconfig/${vault-tls}/vault_ca.crt"
         }
+
+        retry_join {
+          leader_api_addr = "https://vault-0.vault.local:8200"
+        }
+        retry_join {
+          leader_api_addr = "https://vault-1.vault.local:8200"
+        }
+        retry_join {
+          leader_api_addr = "https://vault-2.vault.local:8200"
+        }
+        
   
         seal "gcpckms" {
           project     = "${project_id}"

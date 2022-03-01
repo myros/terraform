@@ -28,7 +28,7 @@ variable "cluster_name" {
 variable "vault_release_name" {
   description = "Application name."
   type        = string
-  default     = "vault-pl"
+  default     = "vault-ha"
 }
 
 variable "bucket_name" {
