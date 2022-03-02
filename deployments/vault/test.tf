@@ -55,18 +55,18 @@ resource "kubernetes_service_account_v1" "vault-auth" {
   // }
 }
 
-// resource "google_storage_bucket" "bucket1" {
-//   name          = lower("${var.bucket_name}-${random_id.rand.hex}")
-//   location      = "eu-west"
-//   project       = var.project
+resource "google_storage_bucket" "bucket1" {
+  name          = lower("${var.bucket_name}-${random_id.rand.hex}")
+  location      = "eu-west"
+  project       = var.project
   
-//   uniform_bucket_level_access = true
-//   storage_class = var.storage_class
+  uniform_bucket_level_access = true
+  storage_class = var.storage_class
   
-//   versioning {
-//     enabled     = true
-//   }
+  versioning {
+    enabled     = true
+  }
 
-//   force_destroy = true
+  force_destroy = true
 
-// }
+}
