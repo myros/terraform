@@ -23,6 +23,7 @@ resource "helm_release" "external-secrets" {
   namespace = "vault"
   description = "External secrets"
   chart = "external-secrets/external-secrets"
+  repository = "https://charts.external-secrets.io"
 
   depends_on = [
     kubernetes_namespace.vault
