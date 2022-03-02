@@ -22,7 +22,7 @@ resource "helm_release" "external-secrets" {
   name  = "external-secrets"
   namespace = "vault"
   description = "External secrets"
-  chart = "external-secrets/external-secrets"
+  chart = "external-secrets"
   repository = "https://charts.external-secrets.io"
 
   depends_on = [
