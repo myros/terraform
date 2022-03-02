@@ -51,7 +51,8 @@ resource "tls_cert_request" "vault" {
     "vault.default.svc",
     "vault.vault.svc",
     "*.${var.vault_release_name}-internal.vault",
-    "${var.vault_release_name}.vault.svc"
+    "${var.vault_release_name}.vault.svc",
+    "${var.vault_release_name}.vault",
     //  data.google_compute_address.internal.address
   ]
 

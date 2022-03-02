@@ -22,7 +22,7 @@ resource "kubernetes_secret" "vault-tls" {
     "vault.key" = tls_private_key.vault.private_key_pem
     "ca.crt"    = tls_self_signed_cert.vault-ca.cert_pem
   }
-  
+
   depends_on = [
     kubernetes_namespace.vault
   ]

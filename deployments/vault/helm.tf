@@ -17,6 +17,19 @@ resource "kubernetes_namespace" "vault" {
 
 }
 
+
+resource "helm_release" "external-secrets" {
+  name  = "external-secrets"
+  namespace = "vault"
+  description = "External secrets"
+  chart = "external-secrets/external-secrets"
+
+  depends_on = [
+    kubernetes_namespace.vault
+  ]
+
+}
+
 resource "helm_release" "vault" {
   name  = var.vault_release_name
   namespace = "vault"
