@@ -30,7 +30,8 @@ steps:
       - | 
         echo 'branch: $BRANCH_NAME'
         echo "*************** TERRAFOM PLAN ******************"
-        echo "******* At environment: ${env} ********"
+        echo "******* At environment: ${PROJECT_ID} ********"
+        echo "******* At environment: ${PROJECT_NUMBER} ********"
         echo "*************************************************"
 
         cat <<EOF > main.auto.tfvars
