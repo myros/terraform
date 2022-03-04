@@ -17,7 +17,7 @@ injector:
     tag: "1.9.2"
 
   # only if we're using tls disable
-  # externalVaultAddr: "https://vault.default.svc:8200"
+  # externalVaultAddr: "https://vault-ha.vault.svc:8200"
 
 server:
   annotations:
