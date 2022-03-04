@@ -11,7 +11,7 @@
 
 terraform {
   backend "gcs" {
-    bucket  = "myros-tf-backend"
+    bucket  = "maginfo-tf-backend"
     prefix  = "myprefix"
  
     // encryption_key = "xOJ22WdqRNsVssRxxtnKSGoPka6auCyfWiob1KQfs1k="
