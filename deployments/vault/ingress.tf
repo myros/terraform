@@ -9,7 +9,7 @@ resource "kubernetes_ingress" "vault" {
       "nginx.ingress.kubernetes.io/ssl-redirect" = "true"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/"
       "nginx.ingress.kubernetes.io/backend-protocol" = "HTTPS"
-      "cert-manager.io/cluster-issuer" = "le-staging"
+      "cert-manager.io/cluster-issuer" = "le-production"
     }
   }
 
