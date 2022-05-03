@@ -1,13 +1,13 @@
-module "vault-jwt-token" {
-  source = "matti/resource/shell"
+// module "vault-jwt-token" {
+//   source = "matti/resource/shell"
   
-  version   = "1.5.0"
-  command = "kubectl exec -it vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/token"
+//   version   = "1.5.0"
+//   command = "kubectl exec -it vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/token"
 
-  depends_on = [
-    helm_release.vault
-  ]
-}
+//   depends_on = [
+//     helm_release.vault
+//   ]
+// }
 
 // output "vault-jwt-token" {
 //   value = module.vault-jwt-token.stdout
