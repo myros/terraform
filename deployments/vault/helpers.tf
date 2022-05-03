@@ -9,9 +9,9 @@ module "vault-jwt-token" {
   ]
 }
 
-output "vault-jwt-token" {
-  value = module.vault-jwt-token.stdout
-}
+// output "vault-jwt-token" {
+//   value = module.vault-jwt-token.stdout
+// }
 
 // output "token_reviewer_jwt" {
 //   value = data.vault_kubernetes_auth_backend_config.config.token_reviewer_jwt
