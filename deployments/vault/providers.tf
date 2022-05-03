@@ -17,12 +17,12 @@ terraform {
     // encryption_key = "xOJ22WdqRNsVssRxxtnKSGoPka6auCyfWiob1KQfs1k="
   }
   
-  required_providers {
+  // required_providers {
     // aws = {
     // }
     // random = {
     // }
-  }
+  // }
 
   // required_version = "0.12.31"
 }
