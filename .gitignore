@@ -10,6 +10,8 @@
 **/*.tfplan
 **/*.tfplan.*
 **/test
+**/vault-ent
+**/vault-onboarding
 
 # .tfstate files
 *.tfstate
