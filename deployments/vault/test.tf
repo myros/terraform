@@ -46,14 +46,14 @@ resource "google_storage_bucket" "bucket" {
   // ]
 }
 
-resource "kubernetes_service_account_v1" "vault-auth" {
-  metadata {
-    name = "vault-auth-sa"
-  }
-  // secret {
-  //   name = "${kubernetes_secret_v1.example.metadata.0.name}"
-  // }
-}
+// resource "kubernetes_service_account_v1" "vault-auth" {
+//   metadata {
+//     name = "vault-auth-sa"
+//   }
+//   // secret {
+//   //   name = "${kubernetes_secret_v1.example.metadata.0.name}"
+//   // }
+// }
 
 resource "google_storage_bucket" "bucket1" {
   name          = lower("${var.bucket_name}-${random_id.rand.hex}")
@@ -70,17 +70,17 @@ resource "google_storage_bucket" "bucket1" {
   force_destroy = true
 
   
-  cors {
-    origin          = ["http://some-example.com"]
-    method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
-    response_header = ["*"]
-    max_age_seconds = 3600
-  }
+  // cors {
+  //   origin          = ["http://some-example.com"]
+  //   method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
+  //   response_header = ["*"]
+  //   max_age_seconds = 3600
+  // }
 
-  labels = {
-    "label1": "label1-value"
-    "label2": "label2-value"
-  }
+  // labels = {
+  //   "label1": "label1-value"
+  //   "label2": "label2-value"
+  // }
 
 
 }

@@ -24,6 +24,13 @@ server:
     cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     # kubernetes.io/ingress.class: "nginx
 
+  enterpriseLicense:
+    # The name of the Kubernetes secret that holds the enterprise license. The
+    # secret must be in the same namespace that Vault is installed into.
+    secretName: "" # "vault-licence"
+    # The key within the Kubernetes secret that holds the enterprise license.
+    secretKey: "" # "licence"
+
   extraEnvironmentVars:
     GOOGLE_REGION: "${region}"
     GOOGLE_PROJECT: "${project_id}"
@@ -39,8 +46,8 @@ server:
       name: ${vault-tls}    
 
   image:
-    repository: "vault"
-    tag: "1.9.2"
+    repository: "hashicorp/vault"
+    tag: "1.9.3"
     # Overrides the default Image Pull Policy
     pullPolicy: Always      
 

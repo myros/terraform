@@ -1,21 +1,26 @@
 # kubectl create configmap nginx-purge-cache-lua --from-file purge-multi.lua=purge-cache.lua --dry-run -o yaml | kubectl apply -f -
 
-
-resource "kubernetes_namespace" "vault" {
+data "kubernetes_namespace" "vault" {
   metadata {
-    annotations = {
-      name = "example-annotation"
-    }
-
-    labels = {
-      mylabel = "label-value"
-    }
-
     name = "vault"
-
   }
-
 }
+
+// resource "kubernetes_namespace" "vault" {
+//   metadata {
+//     annotations = {
+//       name = "example-annotation"
+//     }
+
+//     labels = {
+//       mylabel = "label-value"
+//     }
+
+//     name = "vault"
+
+//   }
+
+// }
 
 
 resource "helm_release" "external-secrets" {
@@ -26,7 +31,7 @@ resource "helm_release" "external-secrets" {
   repository = "https://charts.external-secrets.io"
 
   depends_on = [
-    kubernetes_namespace.vault
+    data.kubernetes_namespace.vault
   ]
 
 }
@@ -53,7 +58,7 @@ resource "helm_release" "vault" {
   // ]
 
   depends_on = [
-    kubernetes_namespace.vault
+    data.kubernetes_namespace.vault
   ]
 }
 

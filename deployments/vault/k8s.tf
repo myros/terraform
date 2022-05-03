@@ -29,7 +29,7 @@ resource "kubernetes_secret" "vault-tls" {
   }
 
   depends_on = [
-    kubernetes_namespace.vault
+    data.kubernetes_namespace.vault
   ]
 
 }
@@ -47,7 +47,7 @@ resource "kubernetes_secret" "kms-creds" {
   type = "Opaque"
 
   depends_on = [
-    kubernetes_namespace.vault
+    data.kubernetes_namespace.vault
   ]
 }
 

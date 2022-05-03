@@ -12,7 +12,7 @@
 terraform {
   backend "gcs" {
     bucket  = "maginfo-tf-backend"
-    prefix  = "myprefix"
+    prefix  = "cloud"
  
     // encryption_key = "xOJ22WdqRNsVssRxxtnKSGoPka6auCyfWiob1KQfs1k="
   }

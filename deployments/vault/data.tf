@@ -14,13 +14,3 @@ data "kubernetes_service_v1" "vault-deployment" {
     helm_release.vault
   ]
 }
-
-// data "kubernetes_service_v1" "dashboard-deployment" {
-//   metadata {
-//     name = "kubernetes-dashboard"
-//   }
-
-//   depends_on = [
-//     helm_release.kubernetes-dashboard
-//   ]
-// }
